@@ -19,10 +19,10 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
         }
         h1 {
             color: #333;
-            text-align: center;
         }
         #question {
             margin-bottom: 20px;
@@ -38,29 +38,47 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            display: block;
-            margin: 20px auto 0;
+            margin: 10px;
         }
         button:hover {
             background-color: #45a049;
+        }
+        .stop-btn {
+            background-color: #d9534f;
+        }
+        .stop-btn:hover {
+            background-color: #c9302c;
         }
         #result {
             margin-top: 20px;
             font-weight: bold;
             font-size: 18px;
-            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>DATACOM 2 PRELIM QUIZ 2</h1>
-        <div id="question"></div>
+        <div id="question">Question will appear here.</div>
         <button id="submitBtn">Submit Answer</button>
+        <button id="stopBtn" class="stop-btn">Stop Exam</button>
         <div id="result"></div>
     </div>
 
     <script>
+        let quizEnded = false;
+        
+        function stopExam() {
+            quizEnded = true;
+            document.getElementById('question').innerHTML = "<p>The exam has been stopped.</p>";
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('stopBtn').disabled = true;
+            document.getElementById('result').innerHTML = "Your exam has ended.";
+        }
+
+        document.getElementById('stopBtn').addEventListener('click', stopExam);
+
+
      const multipleChoiceQuestions = [
     {
         question: "What is the role of an access layer switch in a network?",
