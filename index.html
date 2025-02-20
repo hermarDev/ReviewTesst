@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DATACOM 2 PRELIM QUIZ 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        #question {
+            margin-bottom: 20px;
+        }
+        input[type="radio"], input[type="text"] {
+            margin-right: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto 0;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DATACOM 2 PRELIM QUIZ 2</h1>
+        <div id="question"></div>
+        <button id="submitBtn">Submit Answer</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+     const multipleChoiceQuestions = [
+    {
+        question: "What is the role of an access layer switch in a network?",
+        options: ["To provide access to a wide-area network (WAN)", "To provide access to a local area network (LAN)", "To manage inter-VLAN routing", "To provide wireless access"],
+        answer: 1,
+        type: "mc"
+    },
+    {
+        question: "What is the primary purpose of a VLAN?",
+        options: ["To increase broadcast domains", "To reduce broadcast domains", "To increase physical network size", "To simplify IP addressing"],
+        answer: 1,
+        type: "mc"
+    },
+    {
+        question: "How does a VLAN improve network performance?",
+        options: ["By combining large broadcast domains into smaller ones", "By reducing the number of devices in a broadcast domain", "By routing traffic to external networks", "By expanding network bandwidth"],
+        answer: 1,
+        type: "mc"
+    },
+    {
+        question: "What type of connection is used for VLANs?",
+        options: ["Physical connection", "Logical connection", "Wireless connection", "Serial connection"],
+        answer: 1,
+        type: "mc"
+    },
+    {
+        question: "Which of the following statements about VLANs is correct?",
+        options: ["VLANs group devices based on physical locations", "VLANs group devices based on logical connections", "VLANs only work with Layer 3 switches", "VLANs can only be created on Layer 1 devices"],
+        answer: 1,
+        type: "mc"
+    },
+    {
+        question: "What type of device is used to forward packets between different VLANs?",
+        options: ["Hub", "Switch", "Router", "Repeater"],
+        answer: 2,
+        type: "mc"
+    },
+    {
+        question: "Which of the following is a benefit of VLAN?",
+        options: ["Decreased security", "Increased network complexity", "Improved IT efficiency", "Larger broadcast domains"],
+        answer: 2,
+        type: "mc"
+    },
+    {
+        question: "What does VLAN stand for?",
+        options: ["Virtual Link Access Network", "Virtual Local Area Network", "Virtual Layer Access Network", "Virtual Layered Area Network"],
+        answer: 1,
+        type: "mc"
+    },
+    {
+        question: "What does each VLAN create in a network?",
+        options: ["A separate physical network", "A separate logical network", "A single broadcast domain", "A direct communication link between devices"],
+        answer: 1,
+        type: "mc"
+    },
+    {
+        question: "In a VLAN setup, what type of traffic is forwarded to devices within the same VLAN?",
+        options: ["Only broadcast traffic", "Only multicast traffic", "Only unicast traffic", "Unicast, broadcast, and multicast traffic"],
+        answer: 3,
+        type: "mc"
+    },
+    {
+        question: "What is a Data VLAN used for?",
+        options: ["To carry management traffic", "To carry voice traffic", "To carry user-generated traffic", "To carry data backup traffic"],
+        answer: 2,
+        type: "mc"
+    },
+    {
+        question: "Which VLAN type is configured to carry user-generated traffic?",
+        options: ["Default VLAN", "Data VLAN", "Management VLAN", "Voice VLAN"],
+        answer: 1,
+        type: "mc"
+    },
+    {
+        question: "What is the function of a Native VLAN in a trunk port?",
+        options: ["To tag all frames received", "To accept untagged traffic", "To forward frames between different VLANs", "To carry only management traffic"],
+        answer: 1,
+        type: "mc"
+    },
+    {
+        question: "Which VLAN type is used for management tasks like logging and monitoring?",
+        options: ["Data VLAN", "Default VLAN", "Management VLAN", "Guest VLAN"],
+        answer: 2,
+        type: "mc"
+    },
+    {
+        question: "What happens to traffic when a device in one VLAN sends a broadcast Ethernet frame?",
+        options: ["The traffic is broadcasted to all VLANs", "The traffic is sent only to devices within the same VLAN", "The traffic is routed to another network", "The traffic is discarded"],
+        answer: 1,
+        type: "mc"
+    },
+    {
+        question: "What is the impact of reducing broadcast domains in a network?",
+        options: ["Increased network congestion", "Increased security risks", "Improved network performance", "Increased network complexity"],
+        answer: 2,
+        type: "mc"
+    },
+    {
+        question: "How does VLAN segmentation improve network security?",
+        options: ["By preventing unauthorized traffic between VLANs", "By allowing devices to communicate over the same wire", "By increasing the number of devices in each VLAN", "By improving physical network security"],
+        answer: 0,
+        type: "mc"
+    },
+    {
+        question: "What happens to the untagged traffic on a trunk port when received?",
+        options: ["It is forwarded to the Native VLAN", "It is discarded", "It is sent to all VLANs", "It is assigned a random VLAN"],
+        answer: 0,
+        type: "mc"
+    },
+    {
+        question: "Which VLAN type is designed to carry voice traffic?",
+        options: ["Data VLAN", "Voice VLAN", "Guest VLAN", "Management VLAN"],
+        answer: 1,
+        type: "mc"
+    },
+    {
+        question: "How does VLAN grouping support network management?",
+        options: ["By providing physical segmentation", "By simplifying addressing schemes", "By enabling administrators to assign similar users or devices to the same group", "By making devices physically closer to each other"],
+        answer: 2,
+        type: "mc"
+    },
+    {
+        question: "Which of the following is a typical use case for VLANs in a network?",
+        options: ["Combining networks of different protocols", "Segregating user groups based on function", "Reducing the overall number of physical switches", "Allowing different IP subnets to share the same bandwidth"],
+        answer: 1,
+        type: "mc"
+    },
+    {
+        question: "What is the main reason for separating voice traffic from data traffic in VLANs?",
+        options: ["To improve security for voice communication", "To increase the amount of traffic on data VLANs", "To prevent voice traffic from affecting the data traffic quality", "To improve the performance of the data VLANs"],
+        answer: 2,
+        type: "mc"
+    },
+    {
+        question: "What is the result of configuring a switch port as part of a VLAN?",
+        options: ["The port becomes part of a separate broadcast domain", "The port is assigned an IP address automatically", "The port can only send multicast traffic", "The port becomes isolated from other devices"],
+        answer: 0,
+        type: "mc"
+    },
+    {
+        question: "How does VLAN segmentation reduce unnecessary network traffic?",
+        options: ["By reducing the number of IP addresses in use", "By segmenting the network into smaller, more manageable parts", "By increasing the amount of traffic on the network", "By combining all broadcast domains into one"],
+        answer: 1,
+        type: "mc"
+    },
+    {
+        question: "What does a VLAN's broadcast domain refer to?",
+        options: ["The entire physical network of devices", "The set of devices that receive a particular broadcast packet", "The size of the IP subnet", "The network's routing table"],
+        answer: 1,
+        type: "mc"
+    },
+    {
+        question: "What is one of the main advantages of VLAN-based security?",
+        options: ["Devices in different VLANs can access each other's data", "Devices within the same VLAN can exchange data freely", "Sensitive data can be separated from other network traffic", "It prevents physical device access to the network"],
+        answer: 2,
+        type: "mc"
+    },
+    {
+        question: "Which of the following is an example of a default VLAN?",
+        options: ["VLAN 10 (Faculty)", "VLAN 1 (Default)", "VLAN 30 (Guest)", "VLAN 20 (Student)"],
+        answer: 1,
+        type: "mc"
+    },
+    {
+        question: "Which factor does not influence VLAN segmentation?",
+        options: ["Function", "Application", "Physical location", "Project team"],
+        answer: 2,
+        type: "mc"
+    },
+    {
+        question: "What is the benefit of VLAN management efficiency?",
+        options: ["It reduces the need for device replacements", "It makes it easier to implement network policies", "It eliminates the need for user authentication", "It increases the cost of network upgrades"],
+        answer: 1,
+        type: "mc"
+    },
+    {
+        question: "How do VLANs make network management easier for IT staff?",
+        options: ["By requiring fewer physical devices", "By allowing easier identification based on naming conventions", "By centralizing network traffic in one location", "By separating VLANs from all routing tasks"],
+        answer: 1,
+        type: "mc"
+    }
+];
+
+const fillInTheBlankQuestions = [
+    {
+        question: "VLANs allow an administrator to segment networks based on factors such as __________, project team, or application.",
+        answer: "Function",
+        type: "fib"
+    },
+    {
+        question: "A VLAN creates a logical __________ domain that can span multiple physical LAN segments.",
+        answer: "Broadcast",
+        type: "fib"
+    },
+    {
+        question: "A __________ VLAN is configured to carry user-generated traffic.",
+        answer: "Data",
+        type: "fib"
+    },
+    {
+        question: "A __________ VLAN is typically used for management tasks such as logging and monitoring.",
+        answer: "Management",
+        type: "fib"
+    },
+    {
+        question: "The Native VLAN is used for __________ traffic when it is received on the trunk port.",
+        answer: "Untagged",
+        type: "fib"
+    },
+    {
+        question: "VLANs enable __________ policies according to specific groupings of users.",
+        answer: "Security",
+        type: "fib"
+    },
+    {
+        question: "Devices within a VLAN act as if they are in their own __________ network.",
+        answer: "Logical",
+        type: "fib"
+    },
+    {
+        question: "VLANs improve network __________ by reducing the number of devices in a broadcast domain.",
+        answer: "Performance",
+        type: "fib"
+    },
+    {
+        question: "A __________ VLAN refers to all ports on the device when the switch is on.",
+        answer: "Default",
+        type: "fib"
+    },
+    {
+        question: "A __________ VLAN can carry voice traffic and prioritize voice over data.",
+        answer: "Voice",
+        type: "fib"
+    },
+    {
+        question: "244 = __________ in binary.",
+        answer: "11110100",
+        type: "fib"
+    },
+    {
+        question: "11000111 = __________ in decimal.",
+        answer: "199",
+        type: "fib"
+    },
+    {
+        question: "122 = __________ in binary.",
+        answer: "01111010",
+        type: "fib"
+    },
+    {
+        question: "11011111 = __________ in decimal.",
+        answer: "223",
+        type: "fib"
+    },
+    {
+        question: "/8 = Subnet Mask: __________.",
+        answer: "255.0.0.0",
+        type: "fib"
+    },
+    {
+        question: "11101100 = __________ in decimal.",
+        answer: "236",
+        type: "fib"
+    },
+    {
+        question: "01100101 = __________ in decimal.",
+        answer: "101",
+        type: "fib"
+    },
+    {
+        question: "/24 = Subnet Mask: __________.",
+        answer: "255.255.255.0",
+        type: "fib"
+    },
+    {
+        question: "11000000.10101000.01100100.11011110 = __________ in decimal.",
+        answer: "192.168.100.222",
+        type: "fib"
+    },
+    {
+        question: "177 = __________ in binary.",
+        answer: "10110001",
+        type: "fib"
+    }
+];
+
+        // Merge all questions
+        const questions = [...multipleChoiceQuestions, ...fillInTheBlankQuestions];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function displayQuestion() {
+            const questionDiv = document.getElementById('question');
+            const currentQuestion = questions[currentQuestionIndex];
+
+            if (currentQuestion.type === "mc") {
+                questionDiv.innerHTML = `
+                    <p>${currentQuestion.question}</p>
+                    ${currentQuestion.options.map((option, i) => `
+                        <label>
+                            <input type="radio" name="answer" value="${i}">
+                            ${option}
+                        </label><br>
+                    `).join('')}
+                `;
+            } else if (currentQuestion.type === "fib") {
+                questionDiv.innerHTML = `
+                    <p>${currentQuestion.question}</p>
+                    <input type="text" name="answer">
+                `;
+            }
+        }
+
+        function checkAnswer() {
+            const currentQuestion = questions[currentQuestionIndex];
+            let userAnswer;
+
+            if (currentQuestion.type === "mc") {
+                const selectedRadio = document.querySelector('input[name="answer"]:checked');
+                if (!selectedRadio) return;
+                userAnswer = parseInt(selectedRadio.value);
+            } else if (currentQuestion.type === "fib") {
+                const textInput = document.querySelector('input[name="answer"]');
+                if (!textInput.value) return;
+                userAnswer = textInput.value.trim();
+            }
+
+            if (currentQuestion.type === "mc" && userAnswer === currentQuestion.answer) {
+                score++;
+            } else if (currentQuestion.type === "fib" && userAnswer.toLowerCase() === currentQuestion.answer.toLowerCase()) {
+                score++;
+            }
+
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < questions.length) {
+                displayQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            const resultDiv = document.getElementById('result');
+            const questionDiv = document.getElementById('question');
+            const submitBtn = document.getElementById('submitBtn');
+
+            questionDiv.style.display = 'none';
+            submitBtn.style.display = 'none';
+            resultDiv.textContent = `Quiz completed! Your score: ${score} out of ${questions.length}`;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            shuffleArray(questions);
+            displayQuestion();
+            document.getElementById('submitBtn').addEventListener('click', checkAnswer);
+        });
+    </script>
+</body>
+</html>
