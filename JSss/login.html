@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Store - Sign In</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Check login status immediately before the page even loads
+        if (sessionStorage.getItem('isLoggedIn') === 'true') {
+            alert("Please log out first!");
+            window.location.replace('frontpage.html');
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+               <img src="apple.png" alt="Apple Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Store</a></li>
+                <li><a href="#">Mac</a></li>
+                <li><a href="#">iPad</a></li>
+                <li><a href="#">iPhone</a></li>
+                <li><a href="#">Watch</a></li>
+                <li><a href="#">Support</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="auth-container" id="auth-container">
+                <!-- Login Form -->
+                <div class="login-container">
+                    <div class="auth-header">
+                        <h1>Sign in with your Apple ID</h1>
+                        <p>Access your Apple Store account to shop and get support</p>
+                    </div>
+                    
+                    <div class="success-message" id="login-success">
+                        Sign in successful! Redirecting to Apple Store...
+                    </div>
+                    
+                    <div class="general-error" id="login-general-error">
+                        Your Apple ID or password was incorrect. Please try again.
+                    </div>
+                    
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="login-email">Apple ID</label>
+                            <input type="email" id="login-email" name="email" placeholder="name@example.com" required>
+                            <div class="error-message" id="login-email-error">Please enter a valid email address</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+                            <div class="error-message" id="login-password-error">Password must be at least 6 characters</div>
+                        </div>
+                        
+                        <button type="submit" class="btn">Sign In</button>
+                    </form>
+                    
+                    <div class="divider">
+                        <span>Or</span>
+                    </div>
+                    
+                    <div class="links">
+                        <p>Don't have an Apple ID? <a href="#" id="show-register">Create yours now</a></p>
+                        <p><a href="#">Forgot Apple ID or password?</a></p>
+                    </div>
+                </div>
+
+                <!-- Register Form -->
+                <div class="register-container">
+                    <div class="auth-header">
+                        <h1>Create Apple ID</h1>
+                        <p>One Apple ID is all you need to access all Apple services</p>
+                    </div>
+                    
+                    <div class="success-message" id="register-success">
+                        Your Apple ID has been created! Redirecting to Apple Store...
+                    </div>
+                    
+                    <div class="general-error" id="register-general-error">
+                        This email is already associated with an Apple ID. Please use a different email.
+                    </div>
+                    
+                    <form id="register-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first-name">First Name</label>
+                                <input type="text" id="first-name" name="first-name" placeholder="First name" required>
+                                <div class="error-message" id="first-name-error">Please enter your first name</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="last-name">Last Name</label>
+                                <input type="text" id="last-name" name="last-name" placeholder="Last name" required>
+                                <div class="error-message" id="last-name-error">Please enter your last name</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" id="register-email" name="email" placeholder="name@example.com" required>
+                            <div class="error-message" id="register-email-error">Please enter a valid email address</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-password">Password</label>
+                            <input type="password" id="register-password" name="password" placeholder="Create a password" required>
+                            <div class="error-message" id="register-password-error">Password must be at least 6 characters</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirm-password">Confirm Password</label>
+                            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+                            <div class="error-message" id="confirm-password-error">Passwords do not match</div>
+                        </div>
+                        
+                        <button type="submit" class="btn">Create Apple ID</button>
+                        
+                        <div class="terms">
+                            By creating an Apple ID, you agree to the <a href="#">Apple Terms of Service</a> and <a href="#">Privacy Policy</a>
+                        </div>
+                    </form>
+                    
+                    <div class="links">
+                        <p>Already have an Apple ID? <a href="#" id="show-login">Sign in</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Sales and Refunds</a>
+                <a href="#">Legal</a>
+                <a href="#">Site Map</a>
+            </div>
+            <p>Copyright © <script>document.write(new Date().getFullYear())</script> Apple Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+</body>
+</html>
